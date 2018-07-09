@@ -32,10 +32,10 @@ class GameModel {
     
     func move(direction: GameDirection) {
         switch direction {
-        case .north:    currentRowIndex += 1
-        case .south:    currentRowIndex -= 1
-        case .east:     currentLocationIndex += 1
-        case .west:     currentLocationIndex -= 1
+        case .north:    currentLocationIndex += 1
+        case .south:    currentLocationIndex -= 1
+        case .east:     currentRowIndex += 1
+        case .west:     currentRowIndex -= 1
         }
     }
     
@@ -44,7 +44,12 @@ class GameModel {
          TODO: Implement this method. It should return the *correct* GameLocation struct
          in the gameGrid for the player's current location.
          */
-        return GameLocation(x: 0, y: 0, allowedDirections: [], event: nil) // This is not correct! Replace it with real implementation!
+        let x: Int = currentRowIndex - 2
+        let y: Int = currentLocationIndex - 2
+        let event: String? = eventForCoordinate(x: x, y: y)
+        let allowedDirections: [GameDirection] = allowedDirectionsForCoordinate(x: x, y: y)
+        
+        return GameLocation(x: x, y: y, allowedDirections: allowedDirections, event: event) // This is not correct! Replace it with real implementation!
     }
     
     // MARK: Helper methods for creating the game grid
@@ -54,8 +59,17 @@ class GameModel {
             TODO: Implement at least 2 special events for specific coordinates
             in this method.
         */
-        
+        if(x == 1 && y == 2){
+            print("\(#function) Ref: https://www.youtube.com/watch?v=LJfowXTXOfU")
+            return "Beware the Legendary Black\n Beast of AHHHH!!!"
+        }
+        else if(x == 0 && y == -1){
+            print("\(#function): Ref https://www.youtube.com/watch?v=piWCBOsJr-w" )
+            return "A man attacks you armed with a raspberry,\n you pull the lever dropping a 16Ton weight on him,\n you learned that one in Malaysia"
+        }
+        else{
         return nil
+        }
     }
     
     private func createGameGrid() -> [GameRow] {
