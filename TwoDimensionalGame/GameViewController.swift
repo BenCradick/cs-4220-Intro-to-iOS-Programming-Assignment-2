@@ -82,18 +82,5 @@ class GameViewController: UIViewController {
             return northButton
         }
     }
-//    private func directionAsString(target: GameDirection)->String{
-//        switch(target){
-//        case .west:
-//            return "West"
-//        case .east:
-//            return "East"
-//        case .south:
-//            return "South"
-//        case .north:
-//            return "North"
-//        }
-//
-//    }
 }
 
